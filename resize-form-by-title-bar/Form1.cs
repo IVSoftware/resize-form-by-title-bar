@@ -14,9 +14,9 @@ namespace resize_form_by_title_bar
         {
             InitializeComponent();
             Application.AddMessageFilter(this);
-            Disposed += (sender, e) =>Application.RemoveMessageFilter(this);
+            Disposed += (sender, e) => Application.RemoveMessageFilter(this);
         }
-        const int WM_LBUTTONDOWN = 0x0201; 
+        const int WM_LBUTTONDOWN = 0x0201;
         const int WM_MOUSEMOVE = 0x0200;
         const int WM_LBUTTONUP = 0x0202;
 

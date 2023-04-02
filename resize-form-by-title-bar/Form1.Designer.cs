@@ -47,7 +47,9 @@
             ClientSize = new System.Drawing.Size(800, 450);
             Controls.Add(titleBarPanel);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            MinimumSize = new System.Drawing.Size(50, 50);
             Name = "Form1";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "Form1";
             ResumeLayout(false);
         }
