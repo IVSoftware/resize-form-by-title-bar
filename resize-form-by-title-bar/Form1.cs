@@ -15,7 +15,7 @@ namespace resize_form_by_title_bar
             InitializeComponent();
             Application.AddMessageFilter(this);
             Disposed += (sender, e) => Application.RemoveMessageFilter(this);
-            MinimumSize = new Size(50, 50);
+            MinimumSize = new Size(50, 50); // Make sure it can't disappear!
         }
         const int WM_LBUTTONDOWN = 0x0201;
         const int WM_MOUSEMOVE = 0x0200;
