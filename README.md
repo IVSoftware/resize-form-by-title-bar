@@ -1,4 +1,4 @@
-As I understand it, you wish to drag the mouse on the `titleBarPanel` and have that resize the form. To achieve this, consider implementing [IMessageFilter](https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.imessagefilter) to hook the mouse events regardless of which control (e.g. `titleBarPanel`) is focused for the click. Now all you have to do is:
+As I understand it, you wish to drag the mouse on the `titleBarPanel` and have that resize the form (instead of the normal behavior of _moving_ the form). To achieve this, consider implementing [IMessageFilter](https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.imessagefilter) to hook the mouse events regardless of which control (e.g. `titleBarPanel`) is focused for the click. Now all you have to do is:
 - Determine whether mouse position is in the `titleBarPanel` rectangle
 - If so, capture the mouse down `Size` and `Location`
 - As the mouse moves, recalc the main form `Size` based on how much the mouse has moved.
@@ -17,6 +17,7 @@ As I understand it, you wish to drag the mouse on the `titleBarPanel` and have t
             InitializeComponent();
             Application.AddMessageFilter(this);
             Disposed += (sender, e) =>Application.RemoveMessageFilter(this);
+            MinimumSize = new Size(50, 50); // Make sure it can't disappear!
         }
         const int WM_LBUTTONDOWN = 0x0201; 
         const int WM_MOUSEMOVE = 0x0200;
@@ -61,3 +62,13 @@ As I understand it, you wish to drag the mouse on the `titleBarPanel` and have t
         }
     }
 
+***
+The code snippet above addresses:
+>**What I want to achieve** - I want to simply enable the form to be resizable by the top panel object.
+
+The full code that I used to test this answer puts resize-move icons on the title bar. 
+
+[![screenshot][1]][1]
+
+
+  [1]: https://i.stack.imgur.com/Vez0Q.png
